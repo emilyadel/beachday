@@ -10,32 +10,35 @@
         body {
           display: flex;
           justify-content: center;
-          align-items: flex-start;
+          flex-direction: column;
+          align-items: center;
           min-height: 100vh;
         }
     
         .page {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 50px;
-              padding: 20px;
-  max-width: 95%;
-  box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 50px;
+          padding: 20px;
+          max-width: 95%;
+          box-sizing: border-box;
+            text-align: center;
     }
 
     h1, h2 {
-  margin: 0;
-  padding: 5px;
-  text-align: center;
-  word-break: break-word; /* helps prevent weird wrapping */
-  max-width: 90vw;
+          margin: 0;
+          padding: 5px;
+          text-align: center;
+          word-break: break-word; /* helps prevent weird wrapping */
+          max-width: 90vw;
+            font-size: 1.8rem;
     }
 
         .album {
            width: 100%;
           max-width: 400px;
-          height: 300px;
+          height: auto;
           background: #d6b28d;
           border: 10px solid #a67c52;
           padding: 10px;
@@ -52,11 +55,14 @@
           justify-content: center;
           align-items: center;
           overflow: hidden;
+            position: relative;
         }
     
         .photo-frame img {
+          width: 100%;
           max-width: 100%;
           max-height: 100%;
+            object-fit: contain;
           border: 5px solid #fff;
           box-shadow: 2px 2px 10px #555;
         }
@@ -71,14 +77,15 @@
           cursor: pointer;
           user-select: none;
           color: #5a3e1b;
+            z-index: 2;
         }
     
         .arrow.left {
-          left: -40px;
+          left: -30px;
         }
     
         .arrow.right {
-          right: -40px;
+          right: -30px;
         }
       </style>
     </head>
