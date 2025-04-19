@@ -58,6 +58,17 @@ li{
     font-size: 2rem;
     text-align: center;
   }
+
+@media (max-width: 500px) {
+  .arrow.left {
+    left: -2.2rem;
+  }
+
+  .arrow.right {
+    right: -2.2rem;
+  }
+}
+
   
   
   
