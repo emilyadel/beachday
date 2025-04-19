@@ -70,6 +70,7 @@
 .arrow {
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
   font-size: 2rem;
   background: none;
   border: none;
@@ -81,15 +82,26 @@
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Arrows placed just outside the album border */
 .arrow.left {
-  left: -30px;
-  transform: translateY(-50%);
+  left: -2rem;
 }
 
 .arrow.right {
-  right: -30px;
-  transform: translateY(-50%);
+  right: -2rem;
 }
+
+/* Optional tweak: give arrows more room on small screens */
+@media (max-width: 500px) {
+  .arrow.left {
+    left: -2.5rem;
+  }
+
+  .arrow.right {
+    right: -2.5rem;
+  }
+}
+
 
 
 
