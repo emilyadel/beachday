@@ -1,0 +1,269 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a little photo collection</title>
+    <link href="styles.css" rel="stylesheet">
+    <style>
+
+  
+        body {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+    
+        .page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    h1, h2 {
+      margin: 0;
+      padding: 5px;
+    }
+
+        .album {
+          width: 400px;
+          height: 300px;
+          background: #d6b28d;
+          border: 10px solid #a67c52;
+          padding: 10px;
+          box-shadow: 0 0 20px #888;
+          position: relative;
+        }
+    
+        .photo-frame {
+          width: 100%;
+          height: 100%;
+          background: #fff8dc;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+        }
+    
+        .photo-frame img {
+          max-width: 100%;
+          max-height: 100%;
+          border: 5px solid #fff;
+          box-shadow: 2px 2px 10px #555;
+        }
+    
+        .arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 2rem;
+          background: none;
+          border: none;
+          cursor: pointer;
+          user-select: none;
+          color: #5a3e1b;
+        }
+    
+        .arrow.left {
+          left: -40px;
+        }
+    
+        .arrow.right {
+          right: -40px;
+        }
+      </style>
+    </head>
+    <body>
+    
+        <div class="page">
+            <h1>a day at the beach</h1>
+            <h2>by zizi.</h2>
+        
+            <div class="album">
+              <button class="arrow left" onclick="prevPhoto()">‹</button>
+
+              <div class="photo-frame">
+                <div id="loader" style="position: absolute;">Loading...</div>
+                <img id="photo" src="" alt="Photo" onload="hideLoader()" />
+              </div>
+              
+              <button class="arrow right" onclick="nextPhoto()">›</button>
+
+
+            </div>
+
+            <h3 class="heart">💕</h3>
+
+          </div>
+
+                   
+          <script>
+            const photos = [
+              'images/DSCF0021.jpg',
+              'images/DSCF0022.jpg',
+              'images/DSCF0023.jpg',
+              'images/DSCF0024.jpg',
+              'images/DSCF0025.jpg',
+              'images/DSCF0026.jpg',
+              'images/DSCF0027.jpg',
+              'images/DSCF0028.jpg',
+              'images/DSCF0030.jpg',
+              'images/DSCF0032.jpg',
+              'images/DSCF0033.jpg',
+              'images/DSCF0034.jpg',
+              'images/DSCF0035.jpg',
+              'images/DSCF0036.jpg',
+              'images/DSCF0037.jpg',
+              'images/DSCF0038.jpg',
+              'images/DSCF0039.jpg',
+              'images/DSCF0040.jpg',
+              'images/DSCF0041.jpg',
+              'images/DSCF0042.jpg',
+              'images/DSCF0043.jpg',
+              'images/DSCF0044.jpg',
+              'images/DSCF0045.jpg',
+              'images/DSCF0046.jpg',
+              'images/DSCF0047.jpg',
+              'images/DSCF0048.jpg',
+              'images/DSCF0049.jpg',
+              'images/DSCF0050.jpg',
+              'images/DSCF0051.jpg',
+              'images/DSCF0052.jpg',
+              'images/DSCF0053.jpg',
+              'images/DSCF0054.jpg',
+              'images/DSCF0055.jpg',
+              'images/DSCF0056.jpg',
+              'images/DSCF0057.jpg',
+              'images/DSCF0058.jpg',
+              'images/DSCF0059.jpg',
+              'images/DSCF0060.jpg',
+              'images/DSCF0061.jpg',
+              'images/DSCF0062.jpg',
+              'images/DSCF0063.jpg',
+              'images/DSCF0064.jpg',
+              'images/DSCF0065.jpg',
+              'images/DSCF0066.jpg',
+              'images/DSCF0067.jpg',
+              'images/DSCF0068.jpg',
+              'images/DSCF0069.jpg',
+              'images/DSCF0070.jpg',
+              'images/DSCF0071.jpg',
+              'images/DSCF0072.jpg',
+              'images/DSCF0073.jpg',
+              'images/DSCF0074.jpg',
+              'images/DSCF0075.jpg',
+              'images/DSCF0076.jpg',
+              'images/DSCF0077.jpg',
+              'images/DSCF0078.jpg',
+              'images/DSCF0079.jpg',
+              'images/DSCF0080.jpg',
+              'images/DSCF0081.jpg',
+              'images/DSCF0082.jpg',
+              'images/DSCF0083.jpg',
+              'images/DSCF0084.jpg',
+              'images/DSCF0085.jpg',
+              'images/DSCF0086.jpg',
+              'images/DSCF0087.jpg',
+              'images/DSCF0088.jpg',
+              'images/DSCF0089.jpg',
+              'images/DSCF0090.jpg',
+              'images/DSCF0091.jpg',
+              'images/DSCF0092.jpg',
+              'images/DSCF0093.jpg',
+              'images/DSCF0094.jpg',
+              'images/DSCF0095.jpg',
+              'images/DSCF0096.jpg',
+              'images/DSCF0097.jpg',
+              'images/DSCF0098.jpg',
+              'images/DSCF0099.jpg',
+              'images/DSCF0100.jpg',
+              'images/DSCF0101.jpg',
+              'images/DSCF0102.jpg',
+              'images/DSCF0103.jpg',
+              'images/DSCF0104.jpg',
+              'images/DSCF0105.jpg',
+              'images/DSCF0106.jpg',
+              'images/DSCF0107.jpg',
+              'images/DSCF0108.jpg',
+              'images/DSCF0109.jpg',
+              'images/DSCF0110.jpg',
+              'images/DSCF0111.jpg',
+              'images/DSCF0112.jpg',
+              'images/DSCF0113.jpg',
+              'images/DSCF0114.jpg',
+              'images/DSCF0115.jpg',
+              'images/DSCF0116.jpg',
+              'images/DSCF0117.jpg',
+              'images/DSCF0118.jpg',
+              'images/DSCF0119.jpg',
+              'images/DSCF0120.jpg',
+              'images/DSCF0121.jpg',
+              'images/DSCF0122.jpg',
+              'images/DSCF0123.jpg',
+              'images/DSCF0124.jpg',
+              'images/DSCF0125.jpg',
+              'images/DSCF0126.jpg',
+              'images/DSCF0127.jpg',
+              'images/DSCF0128.jpg'
+];
+
+        
+            let current = 0;
+        
+           function showPhoto(index) {
+  const photo = document.getElementById('photo');
+  const loader = document.getElementById('loader');
+
+  // Show loader
+  loader.style.display = 'block';
+
+  // Start loading the new image
+  photo.src = photos[index];
+}
+
+function hideLoader() {
+  const loader = document.getElementById('loader');
+  loader.style.display = 'none';
+}
+
+        
+            function nextPhoto() {
+              current = (current + 1) % photos.length;
+              showPhoto(current);
+            }
+        
+            function prevPhoto() {
+              current = (current - 1 + photos.length) % photos.length;
+              showPhoto(current);
+            }
+        
+            window.onload = () => showPhoto(current);
+
+            function playFlipSound() {
+  const sound = document.getElementById('flipSound');
+  sound.currentTime = 0; // rewind to start
+  sound.play();
+}
+
+function nextPhoto() {
+  playFlipSound();
+  current = (current + 1) % photos.length;
+  showPhoto(current);
+}
+
+function prevPhoto() {
+  playFlipSound();
+  current = (current - 1 + photos.length) % photos.length;
+  showPhoto(current);
+}
+
+
+          </script>
+        
+        <audio id="flipSound" src="sounds/page-flip.mp3" preload="auto"></audio>
+
+        
+
+        </body>
+        </html>
