@@ -60,9 +60,11 @@ li{
   }
 
 @media (max-width: 500px) {
-  .arrow.left {
-    left: -2.2rem;
+  .album {
+    margin: 0 2rem; 
   }
+}
+
 
   .arrow.right {
     right: -2.2rem;
