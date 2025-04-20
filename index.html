@@ -1,308 +1,310 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>a little photo collection</title>
-    <link href="styles.css" rel="stylesheet">
-    <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>a little photo collection</title>
+  <link href="styles.css" rel="stylesheet" />
 
-  
-        body {
-          display: flex;
-          justify-content: center;
-          flex-direction: column;
-          align-items: center;
-          min-height: 100vh;
-        }
-    
-        .page {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin-top: 50px;
-          padding: 20px;
-          max-width: 95%;
-          box-sizing: border-box;
-            text-align: center;
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+      padding: 20px;
+      max-width: 95%;
+      box-sizing: border-box;
+      text-align: center;
     }
 
     h1, h2 {
-          margin: 0;
-          padding: 5px;
-          text-align: center;
-          word-break: break-word; /* helps prevent weird wrapping */
-          max-width: 90vw;
-            font-size: 1.8rem;
+      margin: 0;
+      padding: 5px;
+      text-align: center;
+      word-break: break-word;
+      max-width: 90vw;
+      font-size: 1.8rem;
     }
 
-        .album {
-           width: 100%;
-          max-width: 400px;
-          height: auto;
-          background: #d6b28d;
-          border: 10px solid #a67c52;
-          padding: 10px;
-          box-shadow: 0 0 20px #888;
-          position: relative;
-          margin-top: 20px;
-        }
-    
-        .photo-frame {
-          width: 100%;
-          height: 100%;
-          background: #fff8dc;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          overflow: hidden;
-            position: relative;
-        }
-    
-        .photo-frame img {
-          width: 100%;
-          max-width: 100%;
-          max-height: 100%;
-            object-fit: contain;
-          border: 5px solid #fff;
-          box-shadow: 2px 2px 10px #555;
-        }
-    
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2rem;
-  background: white;
-  border: none;
-  cursor: pointer;
-  user-select: none;
-  color: #5a3e1b;
-  z-index: 2;
-  font-weight: bold;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-}
+    .album {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      background: #d6b28d;
+      border: 10px solid #a67c52;
+      padding: 10px;
+      box-shadow: 0 0 20px #888;
+      position: relative;
+      margin-top: 20px;
+    }
 
-/* Arrows placed just outside the album border */
-.arrow.left {
-  left: -2rem;
-}
+    .photo-frame {
+      width: 100%;
+      height: 100%;
+      background: #fff8dc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
 
-.arrow.right {
-  right: -2rem;
-}
+    .photo-frame img {
+      width: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border: 5px solid #fff;
+      box-shadow: 2px 2px 10px #555;
+    }
 
-/* Optional tweak: give arrows more room on small screens */
-@media (max-width: 500px) {
-  .arrow.left {
-    left: -2.5rem;
-  }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      background-color: #ffffff !important;
+      border: 2px solid #a67c52;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      user-select: none;
+      color: #5a3e1b;
+      z-index: 2;
+      font-weight: bold;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s;
+    }
 
-  .arrow.right {
-    right: -2.5rem;
-  }
-}
+    .arrow:hover {
+      transform: translateY(-50%) scale(1.1);
+    }
 
+    .arrow.left {
+      left: -2rem;
+    }
 
+    .arrow.right {
+      right: -2rem;
+    }
 
+    @media (max-width: 500px) {
+      .arrow.left {
+        left: -2.5rem;
+      }
 
-        
-      </style>
-    </head>
-    <body>
-    
-        <div class="page">
-            <h2>a day at the beach</h2>
-            <h2>by zizi.</h2>
-        
-            <div class="album">
-              <button class="arrow left" onclick="prevPhoto()">‹</button>
+      .arrow.right {
+        right: -2.5rem;
+      }
+    }
 
-              <div class="photo-frame">
-                <div id="loader" style="position: absolute;">Loading...</div>
-                <img id="photo" src="" alt="Photo" onload="hideLoader()" />
-              </div>
-              
-              <button class="arrow right" onclick="nextPhoto()">›</button>
+    #loader {
+      position: absolute;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #5a3e1b;
+      background: rgba(255, 248, 220, 0.8);
+      padding: 6px 12px;
+      border-radius: 6px;
+      z-index: 3;
+    }
 
+    .heart {
+      margin-top: 20px;
+      font-size: 2rem;
+    }
 
-            </div>
+    #muteButton {
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      background: #fff8dc;
+      border: 1px solid #a67c52;
+      border-radius: 6px;
+      padding: 6px 12px;
+      color: #5a3e1b;
+      cursor: pointer;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h2>a day at the beach</h2>
+    <h2>by zizi.</h2>
 
-            <h1 class="heart">💕</h1>
+    <div class="album">
+      <button class="arrow left" onclick="prevPhoto()">‹</button>
+      <div class="photo-frame">
+        <div id="loader">Loading...</div>
+        <img id="photo" src="" alt="Photo" onload="hideLoader()" />
+      </div>
+      <button class="arrow right" onclick="nextPhoto()">›</button>
+    </div>
 
-            <button id="muteButton" onclick="toggleMute()" style="margin-top: 10px;">
-  🔊 sound on
-</button>
+    <h1 class="heart">💕</h1>
 
+    <!-- ✅ Mute toggle button -->
+    <button id="muteButton" onclick="toggleMute()">🔊 sound on</button>
+  </div>
 
-          </div>
+  <!-- ✅ Audio element -->
+  <audio id="flipSound" src="sounds/page-flip.mp3" preload="auto"></audio>
 
-                   
-          <script>
-            const photos = [
-              'images/DSCF0021.jpg',
-              'images/DSCF0022.jpg',
-              'images/DSCF0023.jpg',
-              'images/DSCF0024.jpg',
-              'images/DSCF0025.jpg',
-              'images/DSCF0026.jpg',
-              'images/DSCF0027.jpg',
-              'images/DSCF0028.jpg',
-              'images/DSCF0030.jpg',
-              'images/DSCF0032.jpg',
-              'images/DSCF0033.jpg',
-              'images/DSCF0034.jpg',
-              'images/DSCF0035.jpg',
-              'images/DSCF0036.jpg',
-              'images/DSCF0037.jpg',
-              'images/DSCF0038.jpg',
-              'images/DSCF0039.jpg',
-              'images/DSCF0040.jpg',
-              'images/DSCF0041.jpg',
-              'images/DSCF0042.jpg',
-              'images/DSCF0043.jpg',
-              'images/DSCF0044.jpg',
-              'images/DSCF0045.jpg',
-              'images/DSCF0046.jpg',
-              'images/DSCF0047.jpg',
-              'images/DSCF0048.jpg',
-              'images/DSCF0049.jpg',
-              'images/DSCF0050.jpg',
-              'images/DSCF0051.jpg',
-              'images/DSCF0052.jpg',
-              'images/DSCF0053.jpg',
-              'images/DSCF0054.jpg',
-              'images/DSCF0055.jpg',
-              'images/DSCF0056.jpg',
-              'images/DSCF0057.jpg',
-              'images/DSCF0058.jpg',
-              'images/DSCF0059.jpg',
-              'images/DSCF0061.jpg',
-              'images/DSCF0062.jpg',
-              'images/DSCF0063.jpg',
-              'images/DSCF0064.jpg',
-              'images/DSCF0065.jpg',
-              'images/DSCF0066.jpg',
-              'images/DSCF0067.jpg',
-              'images/DSCF0068.jpg',
-              'images/DSCF0069.jpg',
-              'images/DSCF0070.jpg',
-              'images/DSCF0071.jpg',
-              'images/DSCF0072.jpg',
-              'images/DSCF0073.jpg',
-              'images/DSCF0074.jpg',
-              'images/DSCF0075.jpg',
-              'images/DSCF0076.jpg',
-              'images/DSCF0077.jpg',
-              'images/DSCF0078.jpg',
-              'images/DSCF0079.jpg',
-              'images/DSCF0080.jpg',
-              'images/DSCF0081.jpg',
-              'images/DSCF0082.jpg',
-              'images/DSCF0083.jpg',
-              'images/DSCF0084.jpg',
-              'images/DSCF0085.jpg',
-              'images/DSCF0086.jpg',
-              'images/DSCF0088.jpg',
-              'images/DSCF0089.jpg',
-              'images/DSCF0091.jpg',
-              'images/DSCF0095.jpg',
-              'images/DSCF0096.jpg',
-              'images/DSCF0097.jpg',
-              'images/DSCF0098.jpg',
-              'images/DSCF0100.jpg',
-              'images/DSCF0102.jpg',
-              'images/DSCF0105.jpg',
-              'images/DSCF0107.jpg',
-              'images/DSCF0108.jpg',
-              'images/DSCF0109.jpg',
-              'images/DSCF0110.jpg',
-              'images/DSCF0111.jpg',
-              'images/DSCF0112.jpg',
-              'images/DSCF0113.jpg',
-              'images/DSCF0114.jpg',
-              'images/DSCF0115.jpg',
-              'images/DSCF0116.jpg',
-              'images/DSCF0117.jpg',
-              'images/DSCF0118.jpg',
-              'images/DSCF0119.jpg',
-              'images/DSCF0120.jpg',
-              'images/DSCF0121.jpg',
-              'images/DSCF0122.jpg',
-              'images/DSCF0123.jpg',
-              'images/DSCF0125.jpg',
-              'images/DSCF0126.jpg',
-              'images/DSCF0127.jpg',
-              'images/DSCF0128.jpg'
-];
+  <script>
+    const photos = [
+      'images/DSCF0021.jpg',
+      'images/DSCF0022.jpg',
+      'images/DSCF0023.jpg',
+      'images/DSCF0024.jpg',
+      'images/DSCF0025.jpg',
+      'images/DSCF0026.jpg',
+      'images/DSCF0027.jpg',
+      'images/DSCF0028.jpg',
+      'images/DSCF0030.jpg',
+      'images/DSCF0032.jpg',
+      'images/DSCF0033.jpg',
+      'images/DSCF0034.jpg',
+      'images/DSCF0035.jpg',
+      'images/DSCF0036.jpg',
+      'images/DSCF0037.jpg',
+      'images/DSCF0038.jpg',
+      'images/DSCF0039.jpg',
+      'images/DSCF0040.jpg',
+      'images/DSCF0041.jpg',
+      'images/DSCF0042.jpg',
+      'images/DSCF0043.jpg',
+      'images/DSCF0044.jpg',
+      'images/DSCF0045.jpg',
+      'images/DSCF0046.jpg',
+      'images/DSCF0047.jpg',
+      'images/DSCF0048.jpg',
+      'images/DSCF0049.jpg',
+      'images/DSCF0050.jpg',
+      'images/DSCF0051.jpg',
+      'images/DSCF0052.jpg',
+      'images/DSCF0053.jpg',
+      'images/DSCF0054.jpg',
+      'images/DSCF0055.jpg',
+      'images/DSCF0056.jpg',
+      'images/DSCF0057.jpg',
+      'images/DSCF0058.jpg',
+      'images/DSCF0059.jpg',
+      'images/DSCF0061.jpg',
+      'images/DSCF0062.jpg',
+      'images/DSCF0063.jpg',
+      'images/DSCF0064.jpg',
+      'images/DSCF0065.jpg',
+      'images/DSCF0066.jpg',
+      'images/DSCF0067.jpg',
+      'images/DSCF0068.jpg',
+      'images/DSCF0069.jpg',
+      'images/DSCF0070.jpg',
+      'images/DSCF0071.jpg',
+      'images/DSCF0072.jpg',
+      'images/DSCF0073.jpg',
+      'images/DSCF0074.jpg',
+      'images/DSCF0075.jpg',
+      'images/DSCF0076.jpg',
+      'images/DSCF0077.jpg',
+      'images/DSCF0078.jpg',
+      'images/DSCF0079.jpg',
+      'images/DSCF0080.jpg',
+      'images/DSCF0081.jpg',
+      'images/DSCF0082.jpg',
+      'images/DSCF0083.jpg',
+      'images/DSCF0084.jpg',
+      'images/DSCF0085.jpg',
+      'images/DSCF0086.jpg',
+      'images/DSCF0088.jpg',
+      'images/DSCF0089.jpg',
+      'images/DSCF0091.jpg',
+      'images/DSCF0095.jpg',
+      'images/DSCF0096.jpg',
+      'images/DSCF0097.jpg',
+      'images/DSCF0098.jpg',
+      'images/DSCF0100.jpg',
+      'images/DSCF0102.jpg',
+      'images/DSCF0105.jpg',
+      'images/DSCF0107.jpg',
+      'images/DSCF0108.jpg',
+      'images/DSCF0109.jpg',
+      'images/DSCF0110.jpg',
+      'images/DSCF0111.jpg',
+      'images/DSCF0112.jpg',
+      'images/DSCF0113.jpg',
+      'images/DSCF0114.jpg',
+      'images/DSCF0115.jpg',
+      'images/DSCF0116.jpg',
+      'images/DSCF0117.jpg',
+      'images/DSCF0118.jpg',
+      'images/DSCF0119.jpg',
+      'images/DSCF0120.jpg',
+      'images/DSCF0121.jpg',
+      'images/DSCF0122.jpg',
+      'images/DSCF0123.jpg',
+      'images/DSCF0125.jpg',
+      'images/DSCF0126.jpg',
+      'images/DSCF0127.jpg',
+      'images/DSCF0128.jpg'
+    ];
 
-        
-            let current = 0;
-        
-           function showPhoto(index) {
-  const photo = document.getElementById('photo');
-  const loader = document.getElementById('loader');
+    let current = 0;
+    let isMuted = false;
 
-  // Show loader
-  loader.style.display = 'block';
+    function toggleMute() {
+      isMuted = !isMuted;
+      const btn = document.getElementById('muteButton');
+      btn.textContent = isMuted ? '🔇 sound off' : '🔊 sound on';
+    }
 
-  // Start loading the new image
-  photo.src = photos[index];
-}
+    function playFlipSound() {
+      if (isMuted) return;
+      const sound = document.getElementById('flipSound');
+      sound.currentTime = 0;
+      sound.play();
+    }
 
-function hideLoader() {
-  const loader = document.getElementById('loader');
-  loader.style.display = 'none';
-}
+    function showPhoto(index) {
+      const photo = document.getElementById('photo');
+      const loader = document.getElementById('loader');
+      loader.style.display = 'block';
+      photo.src = photos[index];
+    }
 
-        
-            function nextPhoto() {
-              current = (current + 1) % photos.length;
-              showPhoto(current);
-            }
-        
-            function prevPhoto() {
-              current = (current - 1 + photos.length) % photos.length;
-              showPhoto(current);
-            }
-        
-            window.onload = () => showPhoto(current);
+    function hideLoader() {
+      const loader = document.getElementById('loader');
+      loader.style.display = 'none';
+    }
 
-       function playFlipSound() {
-  if (isMuted) return; // ✅ Don't play if muted
+    function nextPhoto() {
+      playFlipSound();
+      current = (current + 1) % photos.length;
+      showPhoto(current);
+    }
 
-  const sound = document.getElementById('flipSound');
-  sound.currentTime = 0;
-  sound.play();
-}
+    function prevPhoto() {
+      playFlipSound();
+      current = (current - 1 + photos.length) % photos.length;
+      showPhoto(current);
+    }
 
-
-let isMuted = false;
-
-function toggleMute() {
-  isMuted = !isMuted;
-  const btn = document.getElementById('muteButton');
-  btn.textContent = isMuted ? '🔇 sound off' : '🔊 sound on';
-}
-
-              
-function nextPhoto() {
-  playFlipSound();
-  current = (current + 1) % photos.length;
-  showPhoto(current);
-}
-
-function prevPhoto() {
-  playFlipSound();
-  current = (current - 1 + photos.length) % photos.length;
-  showPhoto(current);
-}
-
-
-          </script>
-        
-        <audio id="flipSound" src="sounds/page-flip.mp3" preload="auto"></audio>
-
-        
-
-        </body>
-        </html>
+    window.onload = () => showPhoto(current);
+  </script>
+</body>
+</html>
