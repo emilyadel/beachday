@@ -77,28 +77,28 @@
     }
   }
   
-   .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.5rem;
-    background-color: #ffffff;      
-    border: 2px solid #a67c52;      
-    border-radius: 50%;            
-    width: 40px;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
-    cursor: pointer;
-    user-select: none;
-    color: #5a3e1b;
-    z-index: 2;
-    font-weight: bold;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-    transition: transform 0.2s;
-  }
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  background-color: #ffffff;      
+  border: 2px solid #a67c52;      
+  border-radius: 50%;            
+  width: 44px;
+  height: 44px;               
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+  cursor: pointer;
+  user-select: none;
+  color: #5a3e1b;
+  z-index: 2;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s;
+}
   
   /* ✅ NEW: Hover effect for arrow buttons */
   .arrow:hover {
@@ -124,4 +124,29 @@
       right: -2.5rem;
     }
   }
-  
+
+@media (max-width: 400px) {
+  .arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+  }
+}
+
+  .album::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #fff8dc 0%, #d6b28d 100%);
+  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+  box-shadow: -3px -3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.album:hover::after {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
