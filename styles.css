@@ -1,139 +1,72 @@
 /* ✅ Custom font */
 @font-face {
-    font-family: 'hershey';
-    src: url(fonts/hershey.ttf);
-  }
-  
-  /* ✅ Base styles */
-  body {
-    font-family: 'hershey';
-    font-size: 24px;
-    background-color: olive;
-    color: hotpink;
-    margin: 0;
-    padding: 0;
-  }
-  
-  a {
-    font-size: 36px;
-    color: limegreen;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: azure;
-  }
-  
-  /* ✅ Div and list styling */
-  div {
-    background-color: white;
-  }
-  
-  div:hover {
-    background-color: #ffefd5;
-  }
-  
-  li {
-    padding: 50px;
-    border: black 1px solid;
-    margin: 50px;
-    background-color: darkslateblue;
-  }
-  
-  /* ✅ Layout container */
-  .page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-    padding: 20px;
-    max-width: 95%;
-    box-sizing: border-box;
-    text-align: center;
-  }
-  
-  /* ✅ "Loading..." text */
-  #loader {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #5a3e1b;
-    background: rgba(255, 248, 220, 0.8);
-    padding: 10px 20px;
-    border-radius: 8px;
-    z-index: 2;
-  }
-  
-  /* ✅ Heart styling */
-  .heart {
-    margin-top: 20px;
-    font-size: 2rem;
-    text-align: center;
-  }
-  
-  /* ✅ Mobile tweaks: add side margin for album */
-  @media (max-width: 500px) {
-    .album {
-      margin: 0 2rem;
-    }
-  }
-  
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.5rem;
-  background-color: #ffffff;      
-  border: 2px solid #a67c52;      
-  border-radius: 50%;            
-  width: 44px;
-  height: 44px;               
+  font-family: 'hershey';
+  src: url(fonts/hershey.ttf);
+}
+
+/* ✅ Base styles */
+body {
+  font-family: 'hershey';
+  font-size: 24px;
+  background-color: olive;
+  color: hotpink;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-size: 36px;
+  color: limegreen;
+  text-decoration: none;
+}
+
+a:hover {
+  color: azure;
+}
+
+/* ✅ Div and list styling */
+div {
+  background-color: white;
+}
+
+div:hover {
+  background-color: #ffefd5;
+}
+
+li {
+  padding: 50px;
+  border: 1px solid black;
+  margin: 50px;
+  background-color: darkslateblue;
+}
+
+/* ✅ Layout container */
+.page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
-  cursor: pointer;
-  user-select: none;
-  color: #5a3e1b;
-  z-index: 2;
-  font-weight: bold;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-  transition: transform 0.2s;
-}
-  
-  /* ✅ NEW: Hover effect for arrow buttons */
-  .arrow:hover {
-    transform: translateY(-50%) scale(1.1);
-  }
-  
-  /* ✅ Arrow positioning */
-  .arrow.left {
-    left: -2rem; /* slightly outside the album */
-  }
-  
-  .arrow.right {
-    right: -2rem;
-  }
-  
-  /* ✅ Optional: push arrows a bit farther out on tiny screens */
-  @media (max-width: 500px) {
-    .arrow.left {
-      left: -2.5rem;
-    }
-  
-    .arrow.right {
-      right: -2.5rem;
-    }
-  }
-
-@media (max-width: 400px) {
-  .arrow {
-    width: 36px;
-    height: 36px;
-    font-size: 1.3rem;
-  }
+  margin-top: 50px;
+  padding: 20px;
+  max-width: 95%;
+  box-sizing: border-box;
+  text-align: center;
 }
 
-  .album::after {
+/* ✅ Album styles */
+.album {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  background: #d6b28d;
+  border: 10px solid #a67c52;
+  padding: 10px;
+  box-shadow: 0 0 20px #888;
+  margin-top: 20px;
+}
+
+/* ✅ Decorative page curl effect */
+.album::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -143,6 +76,7 @@
   background: linear-gradient(135deg, #fff8dc 0%, #d6b28d 100%);
   clip-path: polygon(100% 0, 0% 100%, 100% 100%);
   box-shadow: -3px -3px 5px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
 }
 
 .album:hover::after {
@@ -150,3 +84,94 @@
   transition: transform 0.3s ease;
 }
 
+/* ✅ Loading indicator */
+#loader {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #5a3e1b;
+  background: rgba(255, 248, 220, 0.8);
+  padding: 10px 20px;
+  border-radius: 8px;
+  z-index: 2;
+}
+
+/* ✅ Heart under the album */
+.heart {
+  margin-top: 20px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* ✅ Mute button style */
+#muteButton {
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  background: #fff8dc;
+  border: 1px solid #a67c52;
+  border-radius: 6px;
+  padding: 6px 12px;
+  color: #5a3e1b;
+  cursor: pointer;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+/* ✅ Photo arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  background-color: #ffffff;
+  border: 2px solid #a67c52;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  user-select: none;
+  color: #5a3e1b;
+  z-index: 2;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s;
+}
+
+.arrow:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.arrow.left {
+  left: -2rem;
+}
+
+.arrow.right {
+  right: -2rem;
+}
+
+/* ✅ Album margin for mobile */
+@media (max-width: 500px) {
+  .album {
+    margin: 0 2rem;
+  }
+
+  .arrow.left {
+    left: -2.5rem;
+  }
+
+  .arrow.right {
+    right: -2.5rem;
+  }
+}
+
+/* ✅ Shrink arrows on very small screens */
+@media (max-width: 400px) {
+  .arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+  }
+}
