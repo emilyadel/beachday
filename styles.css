@@ -1,48 +1,58 @@
-@font-face{
+/* ✅ Custom font */
+@font-face {
     font-family: 'hershey';
-    src: url(fonts/hershey.ttf)
-}
-
-body {
+    src: url(fonts/hershey.ttf);
+  }
+  
+  /* ✅ Base styles */
+  body {
     font-family: 'hershey';
     font-size: 24px;
     background-color: olive;
     color: hotpink;
-}
-
-a {
+    margin: 0;
+    padding: 0;
+  }
+  
+  a {
     font-size: 36px;
     color: limegreen;
     text-decoration: none;
-}
-
-a:hover {
-    font-size: 36px;
+  }
+  
+  a:hover {
     color: azure;
-    text-decoration: none;
-}
-
-div {
+  }
+  
+  /* ✅ Div and list styling */
+  div {
     background-color: white;
-}
-div:hover {
+  }
+  
+  div:hover {
     background-color: #ffefd5;
-}
-
-li{
+  }
+  
+  li {
     padding: 50px;
     border: black 1px solid;
     margin: 50px;
     background-color: darkslateblue;
-}
-
-.page {
+  }
+  
+  /* ✅ Layout container */
+  .page {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
+    padding: 20px;
+    max-width: 95%;
+    box-sizing: border-box;
+    text-align: center;
   }
-
+  
+  /* ✅ "Loading..." text */
   #loader {
     font-size: 1.2rem;
     font-weight: bold;
@@ -52,25 +62,66 @@ li{
     border-radius: 8px;
     z-index: 2;
   }
-
+  
+  /* ✅ Heart styling */
   .heart {
     margin-top: 20px;
     font-size: 2rem;
     text-align: center;
   }
-
-@media (max-width: 500px) {
-  .album {
-    margin: 0 2rem; 
+  
+  /* ✅ Mobile tweaks: add side margin for album */
+  @media (max-width: 500px) {
+    .album {
+      margin: 0 2rem;
+    }
   }
-}
-
-
+  
+   .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background-color: #ffffff;      
+    border: 2px solid #a67c52;      
+    border-radius: 50%;            
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+    cursor: pointer;
+    user-select: none;
+    color: #5a3e1b;
+    z-index: 2;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s;
+  }
+  
+  /* ✅ NEW: Hover effect for arrow buttons */
+  .arrow:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  /* ✅ Arrow positioning */
+  .arrow.left {
+    left: -2rem; /* slightly outside the album */
+  }
+  
   .arrow.right {
-    right: -2.2rem;
+    right: -2rem;
   }
-
-
   
+  /* ✅ Optional: push arrows a bit farther out on tiny screens */
+  @media (max-width: 500px) {
+    .arrow.left {
+      left: -2.5rem;
+    }
   
+    .arrow.right {
+      right: -2.5rem;
+    }
+  }
   
