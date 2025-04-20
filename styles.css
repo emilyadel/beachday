@@ -65,28 +65,6 @@ li {
   margin-top: 20px;
 }
 
-/* ✅ Decorative page curl effect */
-.album::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 60px;
-  height: 60px;
-  border: 1px solid red;
-  background: linear-gradient(135deg, #fff8dc 0%, #d6b28d 100%);
-  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-  box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 3;
-  pointer-events: none;
-}
-
-
-.album:hover::after {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
-}
-
 /* ✅ Loading indicator */
 #loader {
   font-size: 1.2rem;
@@ -126,10 +104,8 @@ li {
   transform: translateY(-50%);
   font-size: 1.5rem;
   background-color: #ffffff;
-  border: 2px solid #a67c52;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
