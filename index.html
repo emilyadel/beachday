@@ -129,6 +129,11 @@
 
             <h1 class="heart">💕</h1>
 
+            <button id="muteButton" onclick="toggleMute()" style="margin-top: 10px;">
+  🔊 sound on
+</button>
+
+
           </div>
 
                    
@@ -262,12 +267,24 @@ function hideLoader() {
         
             window.onload = () => showPhoto(current);
 
-            function playFlipSound() {
+       function playFlipSound() {
+  if (isMuted) return; // ✅ Don't play if muted
+
   const sound = document.getElementById('flipSound');
-  sound.currentTime = 0; // rewind to start
+  sound.currentTime = 0;
   sound.play();
 }
 
+
+let isMuted = false;
+
+function toggleMute() {
+  isMuted = !isMuted;
+  const btn = document.getElementById('muteButton');
+  btn.textContent = isMuted ? '🔇 sound off' : '🔊 sound on';
+}
+
+              
 function nextPhoto() {
   playFlipSound();
   current = (current + 1) % photos.length;
