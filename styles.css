@@ -73,11 +73,14 @@ li {
   right: 0;
   width: 60px;
   height: 60px;
+  border: 1px solid red;
   background: linear-gradient(135deg, #fff8dc 0%, #d6b28d 100%);
   clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-  box-shadow: -3px -3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 3;
   pointer-events: none;
 }
+
 
 .album:hover::after {
   transform: scale(1.05);
